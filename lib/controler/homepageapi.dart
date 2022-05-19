@@ -1,0 +1,1 @@
+///'https://public.trendyol.com/discovery-web-searchgw-service/v2/api/aggregations/adidas-x-b33?culture=tr-TR&categoryRelevancyEnabled=false&priceAggregationType=DYNAMIC_GAUSS'

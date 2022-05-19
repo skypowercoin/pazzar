@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "590031632751",
+    "project_id": "pazar-af6ca",
+    "storage_bucket": "pazar-af6ca.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:590031632751:android:df481d477e6a252d64d09a",
+        "android_client_info": {
+          "package_name": "com.example.pazar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "590031632751-fm9er43df4ljn9uldidusubpvpq5i8f9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.pazar",
+            "certificate_hash": "57ff8641d0c1411e9a738233e0e81e4df7effd07"
+          }
+        },
+        {
+          "client_id": "590031632751-63uihh88dh92ho8hplr7i20bpienbi97.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCfTlrgPmop7Mb_wBQnHZwYOpcqrAlDqnk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "590031632751-63uihh88dh92ho8hplr7i20bpienbi97.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
