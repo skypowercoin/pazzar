@@ -1,19 +1,16 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pazar/constants.dart';
 import 'package:pazar/controler/productscontroller.dart';
 import 'package:translator/translator.dart';
-import 'package:web_scraper/web_scraper.dart';
 
-class Productlist extends StatefulWidget {
+class Productlist extends GetView {
   Productlist({required pageurl});
 
-  @override
-  _productlistState createState() => _productlistState();
-}
-
-class _productlistState extends State<Productlist> {
   ProductController cont = Get.put(ProductController());
+  final String _startlink = 'https://cdn.dsmcdn.com';
+  final ScrollController _ScrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
@@ -26,18 +23,17 @@ class _productlistState extends State<Productlist> {
             : Column(
                 children: <Widget>[
                   Expanded(
-                    flex: 1,
                     child: GetBuilder<ProductController>(
                       init: ProductController(),
                       initState: (_) {},
                       builder: (C) {
-                        return Container(
-                            height: 110,
-                            color: Colors.red[500],
-                            child: ListView.builder(
-                                itemCount: 1,
-                                itemBuilder: (context, index) =>
-                                    buildproductList(index)));
+                        return Scaffold(
+                          body: ListView.builder(
+                              controller: C.scrl,
+                              itemCount: C.products.length,
+                              itemBuilder: (context, index) =>
+                                  buildproductList(index)),
+                        );
                       },
                     ),
                   ),
@@ -52,10 +48,9 @@ class _productlistState extends State<Productlist> {
         builder: (c) {
           return GestureDetector(
             onTap: () {
-              print(c.result);
-              cont.getproductdetails('');
-              print(c.products[0].images![0]);
-              print('image link');
+              print(index);
+
+              print(c.products[0].ratingScore!.averageRating);
             },
             child: Padding(
               padding: const EdgeInsets.all(5),
@@ -71,7 +66,7 @@ class _productlistState extends State<Productlist> {
                               child: Container(
                                 ///ty137/product/media/images/20210628/16/105165194/158083114/1/1_org_zoom.jpg'
                                 child: Image.network(
-                                  'https://cdn.dsmcdn.com/ty137/product/media/images/20210628/16/105165194/158083114/1/1_org_zoom.jpg',
+                                  _startlink + c.products[index].images![0],
                                   height: 200,
                                 ),
                               ),
@@ -84,14 +79,33 @@ class _productlistState extends State<Productlist> {
                                     Container(
                                         height: 50,
                                         width: 150,
-                                        child: Text('price'),
+                                        child: Text(
+                                            (c.products[index].name!)
+                                                .toString(),
+                                            style: const TextStyle(
+                                                fontWeight: FontWeight.bold)),
                                         color: Colors.white),
                                     Padding(
                                       padding: const EdgeInsets.only(top: 70),
                                       child: Container(
                                           height: 25,
                                           width: 150,
-                                          child: Text('cont.products[index]'),
+                                          child: Center(
+                                            child: Text(
+                                                'السعر' '  ' +
+                                                    (roundDouble(
+                                                            c
+                                                                .products[index]
+                                                                .price!
+                                                                .sellingPrice!,
+                                                            2))
+                                                        .toString() +
+                                                    '  ' +
+                                                    'USD',
+                                                style: TextStyle(
+                                                    fontWeight:
+                                                        FontWeight.bold)),
+                                          ),
                                           color: Colors.white),
                                     ),
                                   ],
@@ -105,4 +119,10 @@ class _productlistState extends State<Productlist> {
           );
         });
   }
+}
+
+/// round price from 00.000 to 0.00
+double roundDouble(double value, int places) {
+  num mod = pow(10.0, places);
+  return ((value * mod).round().toDouble() / mod);
 }

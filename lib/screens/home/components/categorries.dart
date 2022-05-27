@@ -59,7 +59,7 @@ class Categories extends GetView {
             height: physicalHeight * 0.0618 * 5.3,
             color: Colors.red[500],
             child: Productlist(
-              pageurl: '/adidas-erkek-x-b33-g2',
+              pageurl: '',
             )),
       ],
     ));
@@ -72,11 +72,14 @@ class Categories extends GetView {
       builder: (C) {
         return GestureDetector(
           onTap: () {
+            // ignore: avoid_print
+            print('tapinggggggg');
             var link = C.catlinks[index].links;
             var l = C.catmodil.length;
             selectedIndex = index;
             cont.removelist();
             cont.getcircleavatar(link);
+            C.changecolor(index, selectedIndex);
 
             print(C.catlinks[index].links);
           },
@@ -100,14 +103,11 @@ class Categories extends GetView {
                   },
                 ),
                 Container(
-                  margin:
-                      EdgeInsets.only(top: kDefaultPaddin / 4), //top padding 5
-                  height: physicalHeight * 0.002,
-                  width: 15,
-                  color: selectedIndex == index
-                      ? Colors.black
-                      : Colors.transparent,
-                )
+                    margin: EdgeInsets.only(
+                        top: kDefaultPaddin / 4), //top padding 5
+                    height: physicalHeight * 0.002,
+                    width: 15,
+                    color: C.color)
               ],
             ),
           ),

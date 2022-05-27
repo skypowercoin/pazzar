@@ -55,8 +55,8 @@ class GlobalController extends GetxController {
     }
   }
 
-  void changecolor() {
-    _color = Colors.black;
+  void changecolor(int index, int selctindex) {
+    if (index == selctindex) _color = Colors.black;
     update();
   }
 }

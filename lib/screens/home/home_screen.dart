@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:pazar/constants.dart';
 import 'package:pazar/screens/details/components/body.dart';
-import 'package:pazar/screens/details/components/description.dart';
-import 'package:pazar/screens/home/components/body.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pazar/models/market_pro.dart';
 import 'components/categorries.dart';

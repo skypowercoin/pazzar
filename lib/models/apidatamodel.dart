@@ -1,3 +1,6 @@
+import 'package:flutter/material.dart';
+import 'package:translator/translator.dart';
+
 class Aggregmodel {
   bool? isSuccess;
   int? statusCode;
@@ -170,6 +173,7 @@ class Products {
 
   Products.fromJson(Map<String, dynamic> json) {
     id = json['id'];
+
     name = json['name'];
     images = json['images'].cast<String>();
     imageAlt = json['imageAlt'];
@@ -360,11 +364,11 @@ class Variants {
 }
 
 class Price {
-  int? sellingPrice;
-  int? originalPrice;
-  int? manipulatedOriginalPrice;
-  int? discountedPrice;
-  int? buyingPrice;
+  double? sellingPrice;
+  dynamic? originalPrice;
+  dynamic? manipulatedOriginalPrice;
+  dynamic? discountedPrice;
+  dynamic? buyingPrice;
 
   Price(
       {this.sellingPrice,
@@ -374,7 +378,7 @@ class Price {
       this.buyingPrice});
 
   Price.fromJson(Map<String, dynamic> json) {
-    sellingPrice = json['sellingPrice'];
+    sellingPrice = json['sellingPrice'] / 16.toDouble();
     originalPrice = json['originalPrice'];
     manipulatedOriginalPrice = json['manipulatedOriginalPrice'];
     discountedPrice = json['discountedPrice'];
@@ -454,7 +458,7 @@ class Stamps {
 
 /// نصنيف المنتج او الباىع
 class RatingScore {
-  int? averageRating;
+  dynamic? averageRating;
   int? totalCount;
 
   RatingScore({this.averageRating, this.totalCount});
