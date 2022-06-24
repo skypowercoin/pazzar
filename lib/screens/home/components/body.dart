@@ -18,30 +18,24 @@ class _CirclecatgState extends State<Circlecatge> {
   Widget build(BuildContext context) {
     return Container(
       child: SafeArea(
-          child: cont.images == null
-              ? Center(
-                  child:
-                      CircularProgressIndicator(), // Loads Circular Loading Animation
-                )
-              : Column(
-                  children: <Widget>[
-                    Expanded(
-                        child: Stack(
-                      children: <Widget>[
-                        ListView.builder(
-                            padding: EdgeInsets.only(bottom: 10),
-                            scrollDirection: Axis.horizontal,
-                            physics: BouncingScrollPhysics(),
-                            itemCount: cont.images.length,
-                            itemBuilder: (context, index) => buildcat(index)),
-                      ],
-                    )),
-                  ],
-                )),
+          child: Column(
+        children: <Widget>[
+          Expanded(
+              child: Stack(
+            children: <Widget>[
+              ListView.builder(
+                  padding: EdgeInsets.only(bottom: 10),
+                  scrollDirection: Axis.horizontal,
+                  physics: BouncingScrollPhysics(),
+                  itemCount: cont.images.length,
+                  itemBuilder: (context, index) => buildcat(index)),
+            ],
+          )),
+        ],
+      )),
     );
   }
 
-  @override
   Widget buildcat(int index) {
     return GetBuilder<ProductController>(
       init: ProductController(),
@@ -61,7 +55,7 @@ class _CirclecatgState extends State<Circlecatge> {
                 //categorylist[index]['attributes']['src']
                 child: Image.network(cont.images[index].titales),
                 radius: 30,
-                backgroundColor: Colors.red,
+                backgroundColor: Colors.red[100],
               ),
             ));
       },

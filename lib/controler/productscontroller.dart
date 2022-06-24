@@ -31,6 +31,7 @@ class ProductController extends GetxController {
   @override
   void onInit() {
     print("ProductController- onInit");
+    getproductdetails('/mobilya-x-c1119');
 
     _ScrollController.addListener(() {
       if (_ScrollController.position.pixels ==
@@ -83,6 +84,11 @@ class ProductController extends GetxController {
         List prodct = data['result']['products'];
         for (var i = 0; i < prodct.length; i++) {
           products.add(Products.fromJson(prodct[i]));
+
+          ///print(products[i].productGroupId);
+          ////print(products[i].variants![0].attributeName);
+          ////print(products[i].variants![0].attributeValue);
+          ////print(products[i].imageAlt);
         }
 
         print('data  loded and add to list ');
@@ -90,8 +96,27 @@ class ProductController extends GetxController {
         //// {isSuccess: true, statusCode: 200, error: null, result: {slpName: , products: [{id: 1815977, name: Fruity Rhythm Edt 50 ml Kadın Parfüm  3412244510004, images: [/ty128/product/media/images/20210609/14/97887842/11443082/1/1_org_zoom.jpg], imageAlt: adidas Fruity Rhythm Edt 50 ml Kadın Parfüm  3412244510004, brand: {id: 33, name: adidas}, tax: 18, businessUnit: Parfüm, ratingScore: {averageRating: 4.480769230769231, totalCount: 104}, showSexualContent: true, productGroupId: 1464347, hasReviewPhoto: true, sections: [{id: 1}, {id: 2}, {id: 11}, {id: 12}, {id: 101405}], variants: [{attributeValue: Tek Ebat, attributeName: beden, price: {discountedPrice: 80.95, buyingPrice: 0, originalPrice: 80.95, sellingPrice: 80.95}, listingId: bba8c0af5ce8af3a2d576b9256d5d35f, campaignId: 61, merchantId: 127624, discountedPriceInfo: , hasCollectableCoupon: false}], categoryHierarchy: Kozmetik & Kişisel Bakım/Parfüm/Parfüm ve Deodorant, categoryId: 661, categoryName: Parfüm, url: /adidas/fruity-rhythm-edt-50-ml-kadin-
 
       } else {
+        var url = 'https://public.trendyol.com' +
+                '/discovery-web-searchgw-service/v2/api/filter$partUrl' +
+                '&pi=' +
+                '$pageindex',
+            request = http.Request('GET', Uri.parse(url));
+        http.StreamedResponse response = await request.send();
+        if (response.statusCode == 200) {
+          var data = convert.jsonDecode(await response.stream.bytesToString())
+              as Map<String, dynamic>;
+
+          List prodct = data['result']['products'];
+          //print(prodct);
+          for (var i = 0; i < prodct.length; i++) {
+            ///print(prodct[i]);
+            products.add(Products.fromJson(prodct[i]));
+
+            ///print(products[i].productGroupId);
+          }
+        } else
+          print(url);
         _linkurl.clear();
-        getproductdetails('/yatak-odasi-mobilya-x-c104448');
 
         print('the url is not avibalee ');
       }

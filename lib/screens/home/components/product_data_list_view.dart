@@ -3,7 +3,9 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pazar/controler/productscontroller.dart';
-import 'package:translator/translator.dart';
+import 'package:pazar/controler/prudctviewcont.dart';
+import 'package:pazar/screens/details/components/body.dart';
+import 'package:sizer/sizer.dart';
 
 class Productlist extends GetView {
   Productlist({required pageurl});
@@ -11,6 +13,7 @@ class Productlist extends GetView {
   ProductController cont = Get.put(ProductController());
   final String _startlink = 'https://cdn.dsmcdn.com';
   final ScrollController _ScrollController = ScrollController();
+  final ProductView _conProductView = Get.put(ProductView());
 
   @override
   Widget build(BuildContext context) {
@@ -29,10 +32,11 @@ class Productlist extends GetView {
                       builder: (C) {
                         return Scaffold(
                           body: ListView.builder(
+                              scrollDirection: Axis.vertical,
                               controller: C.scrl,
                               itemCount: C.products.length,
                               itemBuilder: (context, index) =>
-                                  buildproductList(index)),
+                                  buildproductList(index, context)),
                         );
                       },
                     ),
@@ -41,16 +45,23 @@ class Productlist extends GetView {
               ));
   }
 
-  Widget buildproductList(int index) {
+  Widget buildproductList(int index, context) {
     return GetBuilder<ProductController>(
         init: ProductController(),
         initState: (_) {},
         builder: (c) {
           return GestureDetector(
             onTap: () {
+              _conProductView.onClose();
+
+              Get.to(Bodyy(
+                product: c.products[index],
+              ));
               print(index);
 
-              print(c.products[0].ratingScore!.averageRating);
+              print(c.products[0].variants![0].attributeName);
+              print(c.products[0].variants![0].attributeValue);
+              print(c.products[0].variants![0].price);
             },
             child: Padding(
               padding: const EdgeInsets.all(5),
@@ -58,59 +69,80 @@ class Productlist extends GetView {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     Container(
-                        color: Colors.lightBlue[200],
+                        decoration: BoxDecoration(
+                            color: Colors.grey[50],
+                            borderRadius: BorderRadius.circular(30)),
                         child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Container(
-                                ///ty137/product/media/images/20210628/16/105165194/158083114/1/1_org_zoom.jpg'
-                                child: Image.network(
-                                  _startlink + c.products[index].images![0],
-                                  height: 200,
-                                ),
+                              padding: EdgeInsets.all(0),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(20.0),
+                                child: FadeInImage.assetNetwork(
+                                    fadeInDuration: Duration(milliseconds: 200),
+                                    height: 150,
+                                    width: 33.w,
+                                    placeholder: 'assets/images/loding.gif',
+                                    fadeInCurve: Curves.bounceIn,
+                                    image: _startlink +
+                                        c.products[index].images![0]),
                               ),
                             ),
-                            Padding(
-                              padding: const EdgeInsets.only(right: 20),
-                              child: SingleChildScrollView(
-                                child: Column(
-                                  children: [
-                                    Container(
-                                        height: 50,
-                                        width: 150,
+                            Column(
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.only(right: 50.w),
+                                  child: SizedBox(
+                                      child: IconButton(
+                                    icon: const Icon(
+                                        Icons.favorite_border_rounded),
+                                    color: Colors.red,
+                                    iconSize: 23,
+                                    onPressed: () {
+                                      print('product is loved');
+                                    },
+                                  )),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Container(
+                                      height: 10.h,
+                                      width: 50.w,
+                                      child: Center(
                                         child: Text(
-                                            (c.products[index].name!)
+                                            (c.products[index].imageAlt)
                                                 .toString(),
                                             style: const TextStyle(
                                                 fontWeight: FontWeight.bold)),
-                                        color: Colors.white),
-                                    Padding(
-                                      padding: const EdgeInsets.only(top: 70),
-                                      child: Container(
-                                          height: 25,
-                                          width: 150,
-                                          child: Center(
-                                            child: Text(
-                                                'السعر' '  ' +
-                                                    (roundDouble(
-                                                            c
-                                                                .products[index]
-                                                                .price!
-                                                                .sellingPrice!,
-                                                            2))
-                                                        .toString() +
-                                                    '  ' +
-                                                    'USD',
-                                                style: TextStyle(
-                                                    fontWeight:
-                                                        FontWeight.bold)),
-                                          ),
-                                          color: Colors.white),
-                                    ),
-                                  ],
+                                      ),
+                                      color: Colors.white),
                                 ),
-                              ),
+                                SizedBox(
+                                  height: 5.h,
+                                  width: 30.w,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 10),
+                                  child: Container(
+                                      height: 25,
+                                      width: 150,
+                                      child: Center(
+                                        child: Text(
+                                            'السعر' '  ' +
+                                                (roundDouble(
+                                                        c.products[index].price!
+                                                            .sellingPrice!,
+                                                        2))
+                                                    .toString() +
+                                                '  ' +
+                                                'USD',
+                                            style: const TextStyle(
+                                                fontWeight: FontWeight.bold)),
+                                      ),
+                                      color: Colors.white),
+                                ),
+                              ],
                             ),
                           ],
                         )),

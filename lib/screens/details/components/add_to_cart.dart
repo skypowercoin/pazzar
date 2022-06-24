@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:pazar/models/market_pro.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:pazar/models/apidatamodel.dart';
 
 import '../../../constants.dart';
 
-class AddToCart extends StatelessWidget {
+class AddToCart extends GetView {
   const AddToCart({
     required this.product,
   });
 
-  final Product product;
+  final Products product;
 
   @override
   Widget build(BuildContext context) {
@@ -24,13 +25,12 @@ class AddToCart extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(18),
               border: Border.all(
-                color: product.pcolor,
+                color: Colors.blueGrey,
               ),
             ),
             child: IconButton(
               icon: SvgPicture.asset(
                 "assets/icons/add_to_cart.svg",
-                color: product.pcolor,
               ),
               onPressed: () {},
             ),
@@ -41,7 +41,7 @@ class AddToCart extends StatelessWidget {
               child: FlatButton(
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(18)),
-                color: product.pcolor,
+                color: Colors.amberAccent,
                 onPressed: () {},
                 child: Text(
                   "Buy  Now".toUpperCase(),

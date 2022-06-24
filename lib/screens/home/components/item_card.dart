@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:pazar/models/market_pro.dart';
+import 'package:get/get.dart';
+import 'package:pazar/models/apidatamodel.dart';
 
 import '../../../constants.dart';
 
-class ItemCard extends StatelessWidget {
-  final Product product;
+class ItemCard extends GetView {
+  final Products product;
   final Function press;
   const ItemCard({
     Key? key,
@@ -27,12 +28,13 @@ class ItemCard extends StatelessWidget {
               // height: 180,
               // width: 160,
               decoration: BoxDecoration(
-                color: product.pcolor,
+                /// add product colcors product.pcolor
+                color: Colors.blue,
                 borderRadius: BorderRadius.circular(40),
               ),
               child: Hero(
                 tag: "${product.id}",
-                child: Image.asset(product.image),
+                child: Image.network(product.images![0]),
               ),
             ),
           ),
@@ -40,7 +42,7 @@ class ItemCard extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: kDefaultPaddin / 4),
             child: Text(
               // products is out demo list
-              product.title,
+              product.productGroupId.toString(),
               style: TextStyle(color: kTextLightColor),
             ),
           ),

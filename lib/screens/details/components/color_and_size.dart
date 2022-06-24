@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pazar/models/market_pro.dart';
+import 'package:pazar/models/apidatamodel.dart';
 
 import '../../../constants.dart';
 
@@ -8,7 +8,7 @@ class ColorAndSize extends StatelessWidget {
     required this.product,
   });
 
-  final Product product;
+  final Products product;
 
   @override
   Widget build(BuildContext context) {
@@ -37,9 +37,9 @@ class ColorAndSize extends StatelessWidget {
             text: TextSpan(
               style: const TextStyle(color: kTextColor),
               children: [
-                const TextSpan(text: "Size\n"),
+                TextSpan(text: product.variants![0].attributeName),
                 TextSpan(
-                  text: "${product.size} cm",
+                  text: "${product.variants![0].attributeValue} ",
                   style: Theme.of(context).textTheme.headline5,
                 )
               ],

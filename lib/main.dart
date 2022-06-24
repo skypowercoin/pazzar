@@ -5,6 +5,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get.dart';
+import 'package:sizer/sizer.dart';
 
 import 'models/auth_form.dart';
 import 'models/original_button.dart';
@@ -23,32 +24,35 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'TURKMART',
-        theme: ThemeData(
-          textTheme: GoogleFonts.almaraiTextTheme(Theme.of(context).textTheme),
-          visualDensity: VisualDensity.adaptivePlatformDensity,
-        ),
-        localizationsDelegates: [
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-        ],
-        supportedLocales: [
-          Locale('ar', 'AE'), // English, no country code
-          Locale('ar', 'SY'), // Spanish, no country code
-        ],
-        locale: const Locale('ar', 'AE'),
-        home: Scaffold(
-          body: AuthTypeSelector(),
-        ),
-        routes: {
-          'home': (context) => HomeScreen(),
-          'login': (context) => AuthScreen(authType: AuthType.login),
-          'register': (context) => AuthScreen(authType: AuthType.register),
-          'rsetpaswoed': (context) => rsetpaswoed(),
-        });
+    return Sizer(builder: (context, orientation, deviceType) {
+      return GetMaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'TURKMART',
+          theme: ThemeData(
+            textTheme:
+                GoogleFonts.almaraiTextTheme(Theme.of(context).textTheme),
+            visualDensity: VisualDensity.adaptivePlatformDensity,
+          ),
+          localizationsDelegates: [
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          supportedLocales: [
+            Locale('ar', 'AE'), // English, no country code
+            Locale('ar', 'SY'), // Spanish, no country code
+          ],
+          locale: const Locale('ar', 'AE'),
+          home: Scaffold(
+            body: AuthTypeSelector(),
+          ),
+          routes: {
+            'home': (context) => HomeScreen(),
+            'login': (context) => AuthScreen(authType: AuthType.login),
+            'register': (context) => AuthScreen(authType: AuthType.register),
+            'rsetpaswoed': (context) => rsetpaswoed(),
+          });
+    });
   }
 }
 

@@ -461,7 +461,7 @@ class RatingScore {
   dynamic? averageRating;
   int? totalCount;
 
-  RatingScore({this.averageRating, this.totalCount});
+  RatingScore(int i, {this.averageRating, this.totalCount});
 
   RatingScore.fromJson(Map<String, dynamic> json) {
     averageRating = json['averageRating'];

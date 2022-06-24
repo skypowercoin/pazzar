@@ -15,19 +15,15 @@ class GlobalController extends GetxController {
 
   List<Catmodel> get catmodil => _catmodel;
   List<Catmodellink> get catlinks => _catlinks;
-  Color get color => _color;
-  late Color _color = Colors.transparent;
+  RxInt isSelected = 1.obs;
 
   final List<Catmodel> _catmodel = [];
   final List<Catmodellink> _catlinks = [];
 
-  GlobalController() {
-    getCategories('');
-  }
-
   @override
   void onInit() {
     print("GlobalController - onInit");
+    getCategories('');
 
     super.onInit();
   }
@@ -48,15 +44,15 @@ class GlobalController extends GetxController {
         String title = data[i]['title'];
         String link = data[i]['attributes']['href'];
         catlinks.add(Catmodellink.fromjson(link.toString()));
-        Translation tr = await title.translate(to: 'ar');
+        Translation tr = await title.translate(to: 'en');
         _catmodel.add(Catmodel.fromjson(tr.toString()));
       }
       update();
     }
   }
 
-  void changecolor(int index, int selctindex) {
-    if (index == selctindex) _color = Colors.black;
+  void changecolor(int index) {
+    isSelected = index.obs;
     update();
   }
 }

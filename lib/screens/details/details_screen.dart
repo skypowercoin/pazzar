@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:pazar/constants.dart';
-import 'package:pazar/models/market_pro.dart';
+import 'package:pazar/models/apidatamodel.dart';
+
 import 'package:pazar/screens/details/components/body.dart';
 
 class DetailsScreen extends StatelessWidget {
-  final Product product;
+  final Products product;
 
   const DetailsScreen({Key? key, required this.product}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       // each product have a color
-      backgroundColor: product.pcolor,
+      backgroundColor: Colors.blueGrey,
       appBar: buildAppBar(context),
       body: Bodyy(product: product),
     );
@@ -20,7 +21,7 @@ class DetailsScreen extends StatelessWidget {
 
   AppBar buildAppBar(BuildContext context) {
     return AppBar(
-      backgroundColor: product.pcolor,
+      backgroundColor: Colors.yellowAccent,
       elevation: 0,
       leading: IconButton(
         icon: SvgPicture.asset(
