@@ -4,13 +4,16 @@ import 'package:pazar/constants.dart';
 import 'package:pazar/controler/prudctviewcont.dart';
 import 'package:pazar/models/apidatamodel.dart';
 import 'package:pazar/screens/details/components/cart_counter.dart';
+import 'package:pazar/screens/home/home_screen.dart';
 import 'package:sizer/sizer.dart';
 
 import 'add_to_cart.dart';
 import 'color_and_size.dart';
 import 'counter_with_fav_btn.dart';
 import 'description.dart';
+import 'navbar.dart';
 import 'product_title_with_image.dart';
+import 'dart:math';
 
 class Bodyy extends GetView {
   final Products product;
@@ -21,7 +24,8 @@ class Bodyy extends GetView {
     // It provide us total height and width
 
     return Scaffold(
-        appBar: AppBar(),
+        bottomNavigationBar: NavigationBar(),
+        appBar: HomeScreen().buildAppBar(),
         body: ListView(
           children: [
             SizedBox(height: 15.h, child: SmalPagevew(product: product)),

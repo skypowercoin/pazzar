@@ -7,42 +7,35 @@ import 'package:pazar/controler/prudctviewcont.dart';
 import 'package:pazar/screens/details/components/body.dart';
 import 'package:sizer/sizer.dart';
 
-class Productlist extends GetView {
+class Productlist extends GetView<ProductController> {
   Productlist({required pageurl});
 
   ProductController cont = Get.put(ProductController());
   final String _startlink = 'https://cdn.dsmcdn.com';
-  final ScrollController _ScrollController = ScrollController();
   final ProductView _conProductView = Get.put(ProductView());
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: cont.result == null
-            ? Center(
-                child:
-                    CircularProgressIndicator(), // Loads Circular Loading Animation
-              )
-            : Column(
-                children: <Widget>[
-                  Expanded(
-                    child: GetBuilder<ProductController>(
-                      init: ProductController(),
-                      initState: (_) {},
-                      builder: (C) {
-                        return Scaffold(
-                          body: ListView.builder(
-                              scrollDirection: Axis.vertical,
-                              controller: C.scrl,
-                              itemCount: C.products.length,
-                              itemBuilder: (context, index) =>
-                                  buildproductList(index, context)),
-                        );
-                      },
-                    ),
-                  ),
-                ],
-              ));
+    return Column(
+      children: <Widget>[
+        Expanded(
+          child: GetBuilder<ProductController>(
+            init: ProductController(),
+            initState: (_) {},
+            builder: (n) {
+              return Scaffold(
+                body: ListView.builder(
+                    scrollDirection: Axis.vertical,
+                    controller: n.scrl,
+                    itemCount: n.products.length,
+                    itemBuilder: (context, index) =>
+                        buildproductList(index, context)),
+              );
+            },
+          ),
+        ),
+      ],
+    );
   }
 
   Widget buildproductList(int index, context) {
@@ -80,7 +73,7 @@ class Productlist extends GetView {
                               child: ClipRRect(
                                 borderRadius: BorderRadius.circular(20.0),
                                 child: FadeInImage.assetNetwork(
-                                    fadeInDuration: Duration(milliseconds: 200),
+                                    fadeInDuration: Duration(milliseconds: 100),
                                     height: 150,
                                     width: 33.w,
                                     placeholder: 'assets/images/loding.gif',
@@ -110,9 +103,7 @@ class Productlist extends GetView {
                                       height: 10.h,
                                       width: 50.w,
                                       child: Center(
-                                        child: Text(
-                                            (c.products[index].imageAlt)
-                                                .toString(),
+                                        child: Text((c.text[index]).toString(),
                                             style: const TextStyle(
                                                 fontWeight: FontWeight.bold)),
                                       ),

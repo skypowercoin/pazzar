@@ -19,26 +19,34 @@ class Categories extends GetView {
   final cont = Get.put(CircleavatarController());
   final contp = Get.put(ProductController());
   final _Itemscontroler = Get.put(Itemscontroler());
+  final gc = Get.put(GlobalController());
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(4.0),
-      child: SizedBox(
-        height: physicalHeight * 0.025,
-        child: GetBuilder<GlobalController>(
-          init: GlobalController(),
-          initState: (_) {},
-          builder: (c) {
-            return ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: c.catmodil.length,
-              itemBuilder: (context, index) => buildCategory(index),
-            );
-          },
-        ),
-      ),
-    );
+    return gc.catmodil.isEmpty
+        ? Center(
+            child: CircularProgressIndicator(
+              color: Colors.blueGrey,
+            ),
+          )
+        : Padding(
+            padding: const EdgeInsets.all(4.0),
+            child: AnimatedContainer(
+              duration: const Duration(milliseconds: 500),
+              height: physicalHeight * 0.04,
+              child: GetBuilder<GlobalController>(
+                init: GlobalController(),
+                initState: (_) {},
+                builder: (c) {
+                  return ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: c.catmodil.length,
+                    itemBuilder: (context, index) => buildCategory(index),
+                  );
+                },
+              ),
+            ),
+          );
   }
 
   Widget buildCategory(int index) {
@@ -58,13 +66,11 @@ class Categories extends GetView {
               onTap: () {
                 // ignore: avoid_print
                 print('tapinggggggg');
-                var link = C.catlinks[index].links;
-                var l = C.catmodil.length;
-                selectedIndex = index;
+                var link = selectedIndex = index;
                 cont.removelist();
-                cont.getcircleavatar(link);
+                cont.getcircleavatar(C.catlinks[index].links);
                 _Itemscontroler.removesubitemslist();
-                _Itemscontroler.getsubitems(link);
+                _Itemscontroler.getsubitems(C.catlinks[index].links);
                 C.changecolor(index);
                 contp.clearproducts();
 

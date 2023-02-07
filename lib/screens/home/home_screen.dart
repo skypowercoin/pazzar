@@ -1,21 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pazar/screens/details/components/navbar.dart';
 
 import 'package:pazar/screens/home/components/subitemslist.dart';
 import 'components/homebody.dart';
+import 'components/item_screen.dart';
+import 'components/lib/drawer.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends GetView {
   HomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: NavigationBar(),
       appBar: buildAppBar(),
       body: Homebody(),
-      drawer: Drawer(
-        child: Subitems(),
-      ),
+      drawer: MyDrawer(),
     );
   }
 

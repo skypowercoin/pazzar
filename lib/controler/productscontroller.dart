@@ -12,11 +12,13 @@ import 'categorys_model.dart';
 class ProductController extends GetxController {
   WebScraper webScraper = WebScraper('https://www.trendyol.com');
   GoogleTranslator translator = GoogleTranslator();
-  final ScrollController _ScrollController = ScrollController();
+  final ScrollController _scrollController = ScrollController();
 
-  ScrollController get scrl => _ScrollController;
+  ScrollController get scrl => _scrollController;
   List<dynamic> get result => _result;
   List<Products> get products => _products;
+  List<String> get text => _text;
+  final List<String> _text = [];
 
   final List<dynamic> _result = [];
   final List<Products> _products = [];
@@ -31,18 +33,7 @@ class ProductController extends GetxController {
   @override
   void onInit() {
     print("ProductController- onInit");
-    getproductdetails('/mobilya-x-c1119');
-
-    _ScrollController.addListener(() {
-      if (_ScrollController.position.pixels ==
-          _ScrollController.position.maxScrollExtent) {
-        addindex();
-        print("lode more data page index $pageindex");
-
-        var dat = _linkurl[0].toString();
-        getproductdetails(dat);
-      }
-    });
+    getproductdetails('/mobilya-1x-c119');
 
     super.onInit();
     update();
@@ -50,6 +41,17 @@ class ProductController extends GetxController {
 
   @override
   void onReady() {
+    _scrollController.addListener(() {
+      if (_scrollController.position.pixels ==
+          _scrollController.position.maxScrollExtent) {
+        addindex();
+        print("lode more data page index $pageindex");
+
+        var dat = _linkurl[0].toString();
+
+        getproductdetails(dat);
+      }
+    });
     super.onReady();
   }
 
@@ -58,6 +60,7 @@ class ProductController extends GetxController {
   void clearproducts() {
     _products.clear();
     _linkurl.clear();
+    _text.clear();
     pageindex = 1;
 
     update();
@@ -84,6 +87,11 @@ class ProductController extends GetxController {
         List prodct = data['result']['products'];
         for (var i = 0; i < prodct.length; i++) {
           products.add(Products.fromJson(prodct[i]));
+          Translation tr = await products[i].categoryName!.translate(to: 'ar');
+
+          text.add(tr.toString());
+          //print('looding product list >from product controler');
+          //print(tr);
 
           ///print(products[i].productGroupId);
           ////print(products[i].variants![0].attributeName);

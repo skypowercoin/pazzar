@@ -6,6 +6,8 @@ import 'package:pazar/models/original_button.dart';
 import 'package:pazar/models/auth_form.dart';
 
 class rsetpaswoed extends StatelessWidget {
+  const rsetpaswoed({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,7 +21,7 @@ class rsetpaswoed extends StatelessWidget {
                   height: MediaQuery.of(context).size.height * 0.618,
                   decoration: BoxDecoration(
                     color: Colors.cyan[900],
-                    borderRadius: BorderRadius.only(
+                    borderRadius: const BorderRadius.only(
                       topLeft: Radius.elliptical(500, 200),
                       bottomLeft: Radius.circular(70),
                       bottomRight: Radius.elliptical(200, 500),

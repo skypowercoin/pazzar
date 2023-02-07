@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
+import 'package:get_storage/get_storage.dart';
 
 import 'models/auth_form.dart';
 import 'models/original_button.dart';
@@ -16,6 +17,8 @@ import 'screens/rest_paswoord_scren.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  GetStorage.init();
+
   runApp(MyApp());
 }
 
@@ -38,11 +41,11 @@ class MyApp extends StatelessWidget {
             GlobalWidgetsLocalizations.delegate,
             GlobalCupertinoLocalizations.delegate,
           ],
-          supportedLocales: [
+          supportedLocales: const [
             Locale('ar', 'AE'), // English, no country code
             Locale('ar', 'SY'), // Spanish, no country code
           ],
-          locale: const Locale('ar', 'AE'),
+          locale: Get.deviceLocale,
           home: Scaffold(
             body: AuthTypeSelector(),
           ),

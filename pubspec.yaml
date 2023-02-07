@@ -50,6 +50,12 @@ dependencies:
   translator: ^0.1.7
   flutter_rating_bar: ^4.0.1
   sizer: ^2.0.15
+  shared_preferences: ^2.0.15
+  
+  curved_navigation_bar: ^1.0.3 
+  shared_preferences_web: ^2.0.4
+  get_storage: ^2.0.3
+  syncfusion_flutter_gauges: ^18.2.44
   
   
   

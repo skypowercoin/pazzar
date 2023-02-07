@@ -44,7 +44,7 @@ class GlobalController extends GetxController {
         String title = data[i]['title'];
         String link = data[i]['attributes']['href'];
         catlinks.add(Catmodellink.fromjson(link.toString()));
-        Translation tr = await title.translate(to: 'en');
+        Translation tr = await title.translate(to: 'ar');
         _catmodel.add(Catmodel.fromjson(tr.toString()));
       }
       update();

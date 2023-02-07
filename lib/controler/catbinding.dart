@@ -9,6 +9,7 @@ import 'items_controler.dart';
 class MyBinding implements Bindings {
   @override
   void dependencies() {
+    Get.lazyPut(() => GlobalController());
     Get.lazyPut(() => Itemscontroler());
     Get.lazyPut(() => ProductController());
     Get.lazyPut(() => CircleavatarController());

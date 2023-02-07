@@ -177,6 +177,7 @@ class Products {
     name = json['name'];
     images = json['images'].cast<String>();
     imageAlt = json['imageAlt'];
+
     brand = json['brand'] != null ? Brand.fromJson(json['brand']) : null;
     tax = json['tax'];
     businessUnit = json['businessUnit'];
@@ -745,5 +746,16 @@ class Filter {
     data['name'] = name;
 
     return data;
+  }
+}
+
+class Translitmodel {
+  String? srctext;
+  String? targrttext;
+  Translitmodel({this.srctext, this.targrttext});
+
+  Translitmodel.fromJson(String json) {
+    var srctext = json.translate(to: 'ar');
+    targrttext = srctext.toString();
   }
 }

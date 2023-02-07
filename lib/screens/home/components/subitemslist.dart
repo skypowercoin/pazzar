@@ -4,8 +4,6 @@ import 'package:pazar/controler/items_controler.dart';
 import 'package:pazar/controler/productscontroller.dart';
 import 'package:sizer/sizer.dart';
 
-import '../../../constants.dart';
-
 // We need satefull widget for our categories
 
 class Subitems extends GetView {
@@ -36,7 +34,7 @@ class Subitems extends GetView {
               builder: (c) {
                 return ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  itemCount: c.subitemstitel.length,
+                  itemCount: c.subitemsss.length,
                   itemBuilder: (context, index) => buildsubiteams(index),
                 );
               },
@@ -66,16 +64,17 @@ class Subitems extends GetView {
               },
               onTap: () {
                 print('tapinggggsub itemsgg');
-                var link = itemscontroler.subitemsinks[index].links;
+                var link =
+                    itemscontroler.subitemsss[index].subitemslink.toString();
                 itemscontroler.removeitemslist();
                 itemscontroler.getitems(index);
                 poc.clearproducts();
                 poc.getproductdetails(link);
 
-                var l = itemscontroler.subitemstitel.length;
+                var l = itemscontroler.subitemsss.length;
                 itemscontroler.changecolor(index);
 
-                print(itemscontroler.subitemsinks[index].links);
+                print(itemscontroler.subitemsss[index].subitemslink);
               },
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -88,7 +87,8 @@ class Subitems extends GetView {
                           child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
-                          Itemscontroler.subitemstitel[index].titales,
+                          Itemscontroler.subitemsss[index].subitemstitale
+                              .toString(),
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             color: Colors.black,
