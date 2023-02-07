@@ -24,7 +24,7 @@ class Bodyy extends GetView {
     // It provide us total height and width
 
     return Scaffold(
-        bottomNavigationBar: NavigationBar(),
+        bottomNavigationBar: navigationBar(),
         appBar: HomeScreen().buildAppBar(),
         body: ListView(
           children: [

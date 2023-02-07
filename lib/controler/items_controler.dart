@@ -1,9 +1,5 @@
-import 'dart:convert';
-
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:translator/translator.dart';
 
 import 'package:web_scraper/web_scraper.dart';

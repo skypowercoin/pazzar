@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class NavigationBar extends GetView {
-  NavigationBar({Key? key}) : super(key: key);
+class navigationBar extends GetView {
+  navigationBar({Key? key}) : super(key: key);
   late int _currentIndex = 3;
 
   Widget build(BuildContext context) {

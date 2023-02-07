@@ -15,7 +15,7 @@ class HomeScreen extends GetView {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: NavigationBar(),
+      bottomNavigationBar: navigationBar(),
       appBar: buildAppBar(),
       body: Homebody(),
       drawer: MyDrawer(),

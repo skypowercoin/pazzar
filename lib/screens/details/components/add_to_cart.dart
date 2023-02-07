@@ -59,10 +59,7 @@ class AddToCart extends GetView {
           Expanded(
             child: SizedBox(
               height: 50,
-              child: FlatButton(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(18)),
-                color: Colors.amberAccent,
+              child: TextButton(
                 onPressed: () {},
                 child: Text(
                   "Buy  Now".toUpperCase(),
@@ -87,7 +84,7 @@ class basket extends GetView {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        bottomNavigationBar: NavigationBar(),
+        bottomNavigationBar: navigationBar(),
         appBar: buildAppBar(),
         body: ListView(
           children: [CartBody(), CheckoutCard()],

@@ -23,10 +23,10 @@ class _RsetPaswordForm extends State<RsetPaswordForm> {
             padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
             child: Column(children: <Widget>[
               TextFormField(
-                decoration: const InputDecoration(
-                  labelText: 'Enter your email',
-                  hintText: 'ex: test@gmail.com',
-                ),
+                ///decoration: const InputDecorator(
+                /// labelText: 'Enter your email',
+                ///hintText: 'ex: test@gmail.com',
+                //),
                 onChanged: (value) {
                   _email = value;
                 },

@@ -1,7 +1,5 @@
 import 'dart:ui';
 
-import 'package:flutter/material.dart';
-
 const kTextColor = Color(0xFF535353);
 const kTextLightColor = Color(0xFFACACAC);
 const kTextLightColoe = Color(0xFF219abc);

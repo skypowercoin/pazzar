@@ -44,10 +44,10 @@ class _AuthFormState extends State<AuthForm> {
               ]),
             ),
             TextFormField(
-              decoration: InputDecoration(
-                labelText: 'Enter your email',
-                hintText: 'ex: test@gmail.com',
-              ),
+              ///decoration: InputDecoration(
+              ///   labelText: 'Enter your email',
+              // hintText: 'ex: test@gmail.com',
+              //),
               onChanged: (value) {
                 _email = value;
               },
@@ -56,9 +56,9 @@ class _AuthFormState extends State<AuthForm> {
             ),
             SizedBox(height: 5),
             TextFormField(
-              decoration: InputDecoration(
-                labelText: 'Enter your password',
-              ),
+              ////decoration: InputDecoration(
+              ///  labelText: 'Enter your password',
+              //),
               obscureText: true,
               onChanged: (value) {
                 _password = value;
